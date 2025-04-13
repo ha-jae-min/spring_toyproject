@@ -27,4 +27,9 @@ public class TimeTests {
     public void testTime() {
         log.info("time: {}", timeMapper.getTime());
     }
+	
+	@Test
+	public void testTime2() {
+		log.info("time2: {}", timeMapper.getTime2());
+	}
 }
