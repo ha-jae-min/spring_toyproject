@@ -1,7 +1,6 @@
 package org.hajam;
 
 import org.hajam.mappers.TimeMapper;
-import org.hajam.service.HelloService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;

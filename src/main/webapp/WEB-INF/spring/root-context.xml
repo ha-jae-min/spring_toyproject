@@ -24,11 +24,13 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
   		<property name="dataSource" ref="dataSource" />
   		<property name="mapperLocations" value="classpath:mappers/*.xml"/>
+  		<!-- mapper xml 파일에 패키지명 생략 가능 -->
+  		<property name="typeAliasesPackage" value="org.hajam.board.domain"/>
 	</bean>
 	
 	<!-- MyBatis Mapper 스캔 추가 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="org.hajam.mappers" />
+        <property name="basePackage" value="org.hajam.mappers, org.hajam.board.mappers" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
