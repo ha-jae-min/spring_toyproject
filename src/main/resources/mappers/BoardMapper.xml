@@ -8,5 +8,11 @@
         INSERT INTO tbl_board (title, content)
         VALUES (#{title}, #{content})
 	</insert>
+	
+	<insert id="insertAttachFile" parameterType="BoardAttachFileVO">
+	    INSERT INTO tbl_board_attachfile (board_id, attachfile_url, ord)
+	    VALUES (#{boardId}, #{attachfileUrl}, #{ord})
+	</insert>
+	
 
 </mapper>

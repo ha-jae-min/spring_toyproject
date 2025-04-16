@@ -1,6 +1,7 @@
 package org.hajam.board.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 // lombok 없이
 public class BoardVO {
@@ -11,6 +12,15 @@ public class BoardVO {
     private Boolean delFlag;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private List<BoardAttachFileVO> attachFiles;
+
+    public List<BoardAttachFileVO> getAttachFiles() {
+        return attachFiles;
+    }
+
+    public void setAttachFiles(List<BoardAttachFileVO> attachFiles) {
+        this.attachFiles = attachFiles;
+    }
 
     public Integer getBoardId() {
         return boardId;

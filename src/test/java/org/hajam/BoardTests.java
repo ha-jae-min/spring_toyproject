@@ -1,5 +1,8 @@
 package org.hajam;
 
+import java.util.List;
+
+import org.hajam.board.domain.BoardAttachFileVO;
 import org.hajam.board.domain.BoardVO;
 import org.hajam.board.mappers.BoardMapper;
 import org.junit.jupiter.api.Test;
@@ -24,15 +27,25 @@ public class BoardTests {
     }
 
     @Test
-    public void testInsertBoard() {
-    	
-        BoardVO vo = new BoardVO();
-        
-        vo.setTitle("테스트 제목");
-        vo.setContent("테스트 내용");
+    public void testInsertBoardWithFiles() throws Exception {
+        BoardVO board = new BoardVO();
+        board.setTitle("파일 포함 게시글");
+        board.setContent("첨부파일이 포함된 게시글입니다.");
 
-        boardMapper.insert(vo);
+        boardMapper.insert(board); // boardId가 자동 생성됨
 
-        log.info("등록된 게시글 번호: {}", vo.getBoardId());
+        List<String> savedUrls = List.of("2025/04/16/abcd.jpg", "2025/04/16/efgh.png"); // FileUtil 결과라고 가정
+
+        for (int i = 0; i < savedUrls.size(); i++) {
+            BoardAttachFileVO fileVO = new BoardAttachFileVO();
+            fileVO.setBoardId(board.getBoardId());
+            fileVO.setAttachfileUrl(savedUrls.get(i));
+            fileVO.setOrd(i);
+
+            boardMapper.insertAttachFile(fileVO);
+        }
+
+        log.info("게시글 ID: {}", board.getBoardId());
     }
+
 }
